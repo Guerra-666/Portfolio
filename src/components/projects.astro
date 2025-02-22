@@ -1,7 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import svgl from "../../public/svgl.png";
-import stockin from "../../public/stockin.png";
+import certify from "../../public/certify.webp";
+import boda from "../../public/boda.webp";
+import terapia from "../../public/terapia.webp";
+import linuxino from "../../public/linuxino.webp";
+import diballu from "../../public/diballu.webp";
 
 interface Project {
   title: string;
@@ -9,97 +12,168 @@ interface Project {
   link: string;
   preview: string;
   status: string;
+  description: string;
+  technologies: { name: string; icon: string; alt: string }[];
 }
 
 const projects: Project[] = [
   {
-    title: "StockIn",
-    image: stockin as ImageMetadata,
-    link: "https://github.com/gothsec/stockin-demo",
-    preview: "https://stockin-demo.vercel.app",
-    status: "In Development",
+    title: "Academia de Danza Di Ballu",
+    image: diballu as ImageMetadata,
+    link: "https://github.com/Guerra-666/",
+    preview: "https://academiadiballu.netlify.app/",
+    status: "Completado",
+    description: "Creada para potenciar la identidad y captación de alumnos en la Academia de Danza Di Ballu. Con un diseño vibrante y funcional, destaca la oferta educativa y optimiza la comunicación con la audiencia.",
+    technologies: [
+      { name: "Astro", icon: "/svg/astro.svg", alt: "Astro Logo" },
+      { name: "TailwindCSS", icon: "/svg/tailwindcss.svg", alt: "TailwindCSS Logo" },
+    ],
   },
   {
-    title: "Svgl.app",
-    image: svgl as ImageMetadata,
-    link: "https://github.com/pheralb/svgl",
-    preview: "https://svgl.app",
-    status: "Contributor",
+    title: "FisioClinic",
+    image: terapia as ImageMetadata,
+    link: "https://github.com/Guerra-666/",
+    preview: "https://fisioclinic.devguerra.com/",
+    status: "En Proceso",
+    description: "Landing page diseñada para optimizar la experiencia del usuario y potenciar la conversión de clientes. Este proyecto refuerza la presencia digital y mejora la visibilidad de un centro de terapia física mediante una interfaz intuitiva y estrategias de marketing efectivas.",
+    technologies: [
+      { name: "Astro", icon: "/svg/astro.svg", alt: "Astro Logo" },
+      { name: "TailwindCSS", icon: "/svg/tailwindcss.svg", alt: "TailwindCSS Logo" },
+    ],
+  },
+  {
+    title: "Invitacion de mi Boda",
+    image: boda as ImageMetadata,
+    link: "https://boda.devguerra.com",
+    preview: "https://guerra-666.github.io/Web_Boda/",
+    status: "Completado",
+    description: "Invitación digital interactiva diseñada para compartir de forma original y accesible la información de mi boda. Prioriza la experiencia en dispositivos móviles, combinando innovación y personalización para un evento inolvidable.",
+    technologies: [
+      { name: "HTML", icon: "/svg/html5.svg", alt: "HTML Logo" },
+      { name: "CSS", icon: "/svg/css.svg", alt: "CSS Logo" },
+      { name: "JavaScript", icon: "/svg/javascript.svg", alt: "JavaScript Logo" },
+    ],
+  },
+  {
+    title: "Linuxino",
+    image: linuxino as ImageMetadata,
+    link: "https://github.com/Guerra-666/Linuxino",
+    preview: "https://github.com/Guerra-666/Linuxino",
+    status: "Completado",
+    description: "Script automatizado que simplifica la configuración del entorno de desarrollo para Arduino en diversas distribuciones Linux. Gestiona la instalación de dependencias, la configuración de permisos y las reglas udev, garantizando una integración eficiente y sin complicaciones.",
+    technologies: [
+      { name: "Bash", icon: "/svg/bash.svg", alt: "Bash Logo" },
+    ],
+  },
+  {
+    title: "CertfyView",
+    image: certify as ImageMetadata,
+    link: "https://github.com/tuusuario/project-beta",
+    preview: "https://certifyview.devguerra.com/",
+    status: "En Desarrollo",
+    description: "Plataforma web que organiza y exhibe certificados y logros académicos de manera elegante. Ofrece una alternativa personalizada y visualmente impactante frente a opciones tradicionales, facilitando la verificación y promoción de credenciales profesionales.",
+    technologies: [
+      { name: "HTML", icon: "/svg/html5.svg", alt: "HTML Logo" },
+      { name: "CSS", icon: "/svg/css.svg", alt: "CSS Logo" },
+      { name: "JavaScript", icon: "/svg/javascript.svg", alt: "JavaScript Logo" },
+    ],
   },
 ];
 ---
 
 <section id="projects" class="py-12 border-t border-[#ffffff10] text-[var(--white)]">
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My work</h2>
-    <h3 class="text-4xl md:text-5xl font-medium mb-8">Projects</h3>
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Mi trabajo</h2>
+    <h3 class="text-4xl md:text-5xl font-medium mb-8">Proyectos</h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {
-        projects.map((project) => (
-          <div class="group">
-            <a
-              href={project.preview}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block"
-            >
-              <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-48 md:h-72 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div class="flex items-center px-3">
-                <div class="flex-grow">
-                  <h4 class="text-2xl font-semibold">{project.title}</h4>
-                  <span class="py-1 text-sm text-[var(--white-icon)]">
-                    {project.status}
-                  </span>
-                </div>
-                <div class="flex gap-2 ml-auto">
-                  <a 
-                    target="_blank" 
-                    href={project.link} 
-                    aria-label="GitHub" 
-                    class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
-                      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z"></path>
-                    </svg>
-                  </a>
-                  <a 
-                    target="_blank" 
-                    href={project.preview} 
-                    aria-label="Preview" 
-                    class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
-                      <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </a>
+    <div class="grid grid-cols-1 gap-6">
+      {projects.map((project) => (
+        <article class="flex flex-col sm:flex-row bg-[#141414] transition hover:shadow-xl rounded-xl overflow-hidden border border-[#ffffff20] hover:border-[var(--sec)]">
+          <div class="flex items-center justify-between p-2 bg-[#ffffff10] text-xs font-bold uppercase text-[var(--white)] sm:flex-col sm:rotate-180 sm:[writing-mode:_vertical-lr]">
+            <span>{project.status}</span>
+            <span class="w-px flex-1 bg-[#ffffff20] mx-2 sm:mx-0 sm:my-2"></span>
           </div>
-        ))
-      }
+
+          <div class="sm:basis-56 relative">
+            <Image
+              src={project.image}
+              alt={project.title}
+              class="h-full w-full object-cover"
+              style="aspect-ratio: 16/9;"
+            />
+
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"/>
+          </div>
+
+          <div class="flex flex-1 flex-col justify-between">
+            <div class="border-s border-[#ffffff20] p-6 sm:!border-l-transparent">
+              <a href={project.preview} target="_blank" class="group">
+                <h3 class="font-bold text-xl text-[var(--white)] group-hover:text-[var(--sec)] transition-colors">
+                  {project.title}
+                </h3>
+              </a>
+              <p class="text-[var(--white)] mt-2">{project.description}</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 border-t border-[#ffffff20]">
+              <div class="flex items-center space-x-3">
+                <span class="text-[var(--white-icon)] text-sm">Stack:</span>
+                <div class="flex items-center space-x-1">
+                  {project.technologies.map((tech) => (
+                    <div class="flex items-center space-x-1">
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.alt} 
+                        class="h-5 w-5 object-contain filter brightness-0 invert opacity-50"
+                        loading="lazy"
+                      />
+                      <span class="text-[var(--white-icon)] text-sm">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 mt-4 sm:mt-0">
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  class="flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-[#ffffff10] hover:bg-[var(--sec)] hover:text-white transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/>
+                  </svg>
+                  Repository
+                </a>
+                <a 
+                  href={project.preview}
+                  target="_blank"
+                  class="flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-[var(--sec)]/20 hover:bg-[var(--sec)]/30 text-[var(--sec)] hover:text-white transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L15.0001 11.0007L9.63614 16.3646L8.22192 14.9504L13.1717 12.0007Z"/>
+                  </svg>
+                  Live Preview
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
     </div>
+
     <a
       target="_blank"
-      href="https://github.com/Gothsec?tab=repositories"
-      aria-label="GitHub"
-      class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+      href="https://github.com/Guerra-666"
+      class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white)] hover:text-[var(--sec)] transition duration-300 ease-in-out border border-[var(--sec)] p-3 rounded-full bg-[var(--sec)]/10 hover:bg-[var(--sec)]/20"
     >
-      <span class="md:text-lg text-md">More projects on</span>
+      <span class="md:text-lg text-md">Explora todos mis proyectos</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
         class="size-6"
       >
-        <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"></path>
+        <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/>
       </svg>
     </a>
   </div>

@@ -1,28 +1,97 @@
 ---
 interface Props {
   title: string;
+  description?: string;
+  url?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Software Developer especializado en soluciones digitales innovadoras.",
+  url = "https://www.devguerra.com",
+  image = "/default-og-image.png",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Software Developer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="Angel Adrian Guerra Avila" />
+    <meta
+      name="keywords"
+      content="Software Developer, Fullstack, Web Development, Astro, TailWind, React, NestJS, Portfolio, Backend, Pachuca, Hidalgo"
+    />
+    <link rel="canonical" href={url} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="es_ES" />
+    <meta
+      property="og:site_name"
+      content="Angel Adrian Guerra Avila Portfolio"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:site" content="@your_twitter_handle" />
+    <meta name="twitter:creator" content="@your_twitter_handle" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
-    </noscript>
+    <!-- Google Fonts Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&subset=latin-ext"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&subset=latin-ext"
+      media="all"
+      onload="this.media='all'"
+    />
 
     <title>{title}</title>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Angel Adrian Guerra Avila",
+        "url": "https://www.devguerra.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/adrianguerradev/",
+          "https://github.com/Guerra-666"
+        ],
+        "jobTitle": "Software Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Pachuca",
+          "addressRegion": "Hidalgo",
+          "addressCountry": "MX"
+        },
+        "description": "Software Developer especializado en soluciones digitales innovadoras.",
+        "image": "https://www.devguerra.com/default-og-image.png"
+      }
+    </script>
   </head>
   <body class="bg-[--background] md:px-48 lg:px-20 px-9">
     <slot />
@@ -32,7 +101,7 @@ const { title } = Astro.props;
 <style is:global>
   :root {
     --background: #101010;
-    --sec: #A476FF;
+    --sec: #a476ff;
     --white: #dfdfdf;
     --white-icon: #f3f3f398;
     --white-icon-tr: #f3f3f310;
